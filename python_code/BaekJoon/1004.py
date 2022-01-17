@@ -26,6 +26,8 @@ for i in range(test_times):
     for j in range(data[1][i]):
         if (dis(data[0][i][:2], data[2][i][j][:2]) < data[2][i][j][2]) or (dis(data[0][i][2:], data[2][i][j][:2]) < data[2][i][j][2]):
             num_inside += 1
+        if (dis(data[0][i][:2], data[2][i][j][:2]) < data[2][i][j][2]) and (dis(data[0][i][2:], data[2][i][j][:2]) < data[2][i][j][2]):
+            num_inside -= 1
     num_answer.append(num_inside)
 
 # 출력
