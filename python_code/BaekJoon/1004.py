@@ -18,14 +18,12 @@ for i in range(test_times):
     for k in range(num_star):
         data_temp.append(list(map(int, input().split())))
     data[2].append(data_temp)
-print(data)
+
 # 출발 및 목적지가 속해있는 행성계의 수 계산
 num_answer = []
 for i in range(test_times):
     num_inside = 0
     for j in range(data[1][i]):
-        print(dis(data[0][i][:2], data[2][i][j][:2]), data[2][i][j][2])
-        print(dis(data[0][i][2:], data[2][i][j][:2]), data[2][i][j][2])
         if (dis(data[0][i][:2], data[2][i][j][:2]) < data[2][i][j][2]) or (dis(data[0][i][2:], data[2][i][j][:2]) < data[2][i][j][2]):
             num_inside += 1
     num_answer.append(num_inside)
