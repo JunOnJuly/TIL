@@ -21,8 +21,6 @@ def clean_up(build_rule: list) -> list:
 
 
 # 데이터 입력-------------------------------------------------------------------------------------------------------------
-global ness_building
-ness_building = []
 
 # 테스트 횟수
 num_case = int(input())
@@ -32,8 +30,7 @@ for i in range(num_case):
     num_build, num_rule = map(int, input().split())
 
     # 건물 당 걸리는 시간
-    time_build = []
-    time_build.append(list(map(int, input().split())))
+    time_build = list(map(int, input().split()))
 
     # 건설순서
     build_rule = []
@@ -43,6 +40,8 @@ for i in range(num_case):
     # 승리조건
     win_rule = int(input())
 
+    global ness_building
+    ness_building = [win_rule]
     # 계산-----------------------------------------------------------------------------------------------------
 
     # 필요한 건물 계산
@@ -52,4 +51,11 @@ for i in range(num_case):
     print(ness_building)
     print(cleaned_list)
 
-    # 필요한 건물 & 건설 순서 정리
+    # 필요한 건물 정리
+    cleaned_ness_building = []
+    for i in range(len(cleaned_list)):
+        if len(cleaned_list[i]) <= 1:
+            for j in range(len(cleaned_list[i])):
+                if cleaned_list[i][j] not in cleaned_ness_building:
+                    cleaned_ness_building.append(cleaned_list[i][j])
+        else:
