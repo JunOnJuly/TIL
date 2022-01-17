@@ -37,11 +37,20 @@
 * 0114_1 깃 사용법
 * 0114_2 python
 
-### 22.01.14
+### 22.01.15
 
 * BaekJoon 1002
 * BaekJoon 1003
 * BaekJoon 1004
+
+### 22.01.16
+
+* BaekJoon 1004
+
+### 22.01.17
+
+* BaekJoon 1004
+* BaekJoon 1005
 
 ## Contents
 
