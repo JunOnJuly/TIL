@@ -1,3 +1,8 @@
+def dis(point1: list, point2: list):
+    cal = ((point1[0]-point2[0])**2 + (point1[1]-point2[1])**2)**(1/2)
+    return cal
+
+
 # 테스트 횟수
 test_times = int(input())
 
@@ -11,4 +16,18 @@ for i in range(test_times):
     data[1].append(num_star)
     for j in range(num_star):
         data[2].append(list(map(int, input().split())))
-print(data)
+
+# 목적지가 속해있는 행성계의 수 계산
+num_answer = []
+for i in range(test_times):
+    num_inside = 0
+    for j in range(data[1][j]):
+        if dis(data[0][:2], data[2][j][:2]) < data[2][j][2]:
+            num_inside += 1
+        if dis(data[0][2:], data[2][j][:2]) < data[2][j][2]:
+            num_inside += 1
+    num_inside.append(num_inside)
+
+# 출력
+for i in range(len(num_answer)):
+    print(num_answer[i])
