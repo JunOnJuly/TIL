@@ -52,9 +52,27 @@
 * BaekJoon 1004
 * BaekJoon 1005
 
+### 22.01.18
+
+* BaekJoon 1005
+* Swea 13229
+
+### 22.01.19
+
+* 0119_1 func
+* 0119_2 module
+* Swea 13244
+
+### 22.01.20
+
+* 0120_1 json
+
 ## Contents
 
 * 마크다운
 * git
 * python
 * BaekJoon
+* function
+* module
+* json
