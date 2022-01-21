@@ -1,4 +1,9 @@
-days = ('SUN', 'MON', 'TUE', 'WED', 'TUE', 'FRI', 'SAT')
+days = ['SUN', 'MON', 'TUE', 'WED', 'TUE', 'FRI', 'SAT']
 
-for i in range(int(input().strip())):
-    print(f'#{i+1} {7 - days.index(input())}')
+T = int(input().strip())
+days_input = []
+for i in range(T):
+    days_input.append(input().strip())
+
+for i in range(T):
+    print(f'#{i+1} {7 - days.index(days_input[i])}')
