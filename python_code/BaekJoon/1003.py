@@ -1,24 +1,18 @@
 # 피보나치 함수 정의
-def fibonacci(num: int):
-    if num == 0:
-        global call_0
-        call_0 += 1
-        return 0
-    elif num == 1:
-        global call_1
-        call_1 += 1
-        return 1
-    else:
-        return fibonacci(num - 1) + fibonacci(num - 2)
+fib_num = []
+fib_num.append(0)
+fib_num.append(1)
+for i in range(40):
+    fib_num.append(fib_num[i] + fib_num[i + 1])
+
 
 
 # 데이터 입력
 test_time = int(input())
 
 for i in range(test_time):
-    global call_0
-    call_0 = 0
-    global call_1
-    call_1 = 0
-    fibonacci(int(input()))
-    print("{0} {1}".format(call_0, call_1))
+    input_num = int(input())
+    if input_num == 0:
+        print(f'{1} {0}')
+    else:
+        print(f'{fibonacci(input_num - 1)} {fibonacci(input_num)}')
