@@ -91,6 +91,7 @@
 #### 220.01.25
 
 * BaekJoon 1110
+* BaekJoon 1244
 
 ## Contents
 
