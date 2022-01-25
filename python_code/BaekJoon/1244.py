@@ -60,7 +60,7 @@ for i in range(num_students):
                     break
 
                 # 인덱싱 범위가 전체를 안넘어갔고 인덱싱 범위가 대칭일 때 인덱싱 범위 확장
-                # 이걸 while문 마지막에 넣었어야 편한데... 생각의 흐름대로 코딩한 결과...
+                # 이걸 while 문 마지막에 넣었어야 편한데... 생각의 흐름대로 코딩한 결과...
                 elif stat_switch[a] == stat_switch[b]:
                     a -= 1
                     b += 1
