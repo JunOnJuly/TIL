@@ -1,9 +1,12 @@
 def warp(num_input: int) -> int:
-    num_str = '1 2 3'
-    for i in range(num_input - 3):
-        num_str = num_str + f' {int(num_str.split()[-1])+int(num_str.split()[-2])-2}'
-    return int(num_str.split()[-1])
-
+    n = 1
+    while True:
+        if (n-1) ** 2 <= num_input <= n ** 2:
+            if num_input <= n * (n - 1):
+                return 2*(n - 1)
+            return 2*n - 1
+        n += 1
+    return
 
 # 데이터 입력
 test_num = int(input().strip())
