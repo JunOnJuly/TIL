@@ -1,37 +1,36 @@
-N = int(input().strip())
+N = int(input())
 
-N_list = list(map(int, input().split()))
+list_num = list(map(int, input().split()))
 
-i = 0
-max_len = 0
-while True:
-    if i == len(N_list) - 1:
+max_len_up = 1
+for i in range(N):
+    if max_len_up > N - i:
         break
-    j = i + 0
-    while True:
-        j += 1
-        if sorted(N_list[i: j]) != N_list[i: j]:
-            if len(N_list[i: j]) - 1 > max_len:
-                max_len = len(N_list[i: j]) - 1
+    index_start = i
+    index_end = i
+    for j in range(i, N - 1):
+        if list_num[j] <= list_num[j + 1]:
+            index_end += 1
+            if j == N - 2:
+                max_len_up = max(index_end - index_start + 1, max_len_up)
+                break
+        else:
+            max_len_up = max(index_end - index_start + 1, max_len_up)
             break
-        if j == len(N_list):
-            break
-    i += 1
 
-i = 0
-while True:
-    if i == len(N_list) - 1:
+max_len_down = 1
+for i in range(N):
+    if max_len_up > N - i:
         break
-    j = i + 0
-    while True:
-        j += 1
-        if sorted(N_list[i: j], reverse=True) != N_list[i: j]:
-            if len(N_list[i: j]) - 1 > max_len:
-                max_len = len(N_list[i: j]) - 1
+    index_start = i
+    index_end = i
+    for j in range(i, N - 1):
+        if list_num[j] >= list_num[j + 1]:
+            index_end += 1
+            if j == N - 2:
+                max_len_up = max(index_end - index_start + 1, max_len_up)
+                break
+        else:
+            max_len_down = max(index_end - index_start + 1, max_len_down)
             break
-        if j == len(N_list):
-            break
-    i += 1
-
-
-print(max_len)
+print(max(max_len_up, max_len_down))
