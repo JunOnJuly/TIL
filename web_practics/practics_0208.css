@@ -1,0 +1,26 @@
+.content::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.box {
+  box-sizing: border-box;
+  width: 80px;
+  height: 80px;
+  margin: 3px;
+  background-color: rgb(68, 138, 115);
+  float: left;
+
+}
+
+#extra_box {
+  box-sizing: border-box;
+  width: 350px;
+  height: 50px;
+  margin: 3px;
+  background-color: rgb(28, 153, 153);
+  text-align: center;
+  line-height: 50px;
+  color: black;
+}
