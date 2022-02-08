@@ -12,16 +12,33 @@ def find_path_to_end(rule_list):
 def change_path_to_time(dict_path, rule_time):
     dict_time = {}
     for key, value in dict_path.items():
-        dict_time[key] = max([rule_time[x] for x in value])
+        dict_time[key] = max([rule_time[x-1] for x in value])
+
+    for i in range(len(rule_time)):
+        if i + 1 not in dict_time.keys():
+            dict_time[i+1] = rule_time[i]
 
     return dict_time
 
 
-def path_maker(dict_path, rule_win):
-    path = []
-    for i in range(len(dict_path)):
-        if dict_path.keys()[i] == rule_win:
+def path_maker(dict_path, dict_time, win_rule):
+    min_time = 0
+    while True:
+        sum_time = 0
+        if win_rule not in dict_path.keys():
+            sum_time += dict_time[win_rule]
+            if min_time == 0:
+                min_time = sum_time
 
+            elif sum_time < min_time:
+                min_time = sum_time
+            break
+        sum_time += dict_time[win_rule]
+        if len(dict_path[win_rule]) > 1:
+            for i in range(len(dict_path[win_rule])):
+                win_rule = dict_path[win_rule][0]
+        else:
+            win_rule = dict_path[win_rule][0]
 
 
 T = int(input())
@@ -30,6 +47,7 @@ for i in range(T):
     N, K = map(int,input().split())
 
     D_list = list(map(int, input().split()))
+    num_1 = D_list[0]
     K_list = []
 
     for _ in range(K):
@@ -37,6 +55,9 @@ for i in range(T):
 
     W = int(input())
 
-    print(find_path_to_end(K_list))
-    print(change_path_to_time(find_path_to_end(K_list), D_list))
-    print(path_maker(find_path_to_end(K_list), W))
+    dict_path = find_path_to_end(K_list)
+    dict_time = change_path_to_time(dict_path, D_list)
+
+    print(dict_path)
+    print(dict_time)
+
