@@ -1,17 +1,32 @@
-T = int(input())
+T = 10
 
-for i in range(T):
-    N = int(input())
 
-    list_block = list(map(int, input().split()))
+for tc in range(1, T + 1):
+    dump_num = int(input())
+    box_height = list(map(int, input().split()))  # 박스의 높이들
 
-    list_fall_len = []
+    cnt = 0
+    while True:
+        max_num = box_height[0]
+        min_num = box_height[0]
 
-    for j in range(len(list_block)):
-        num_over = 0
-        for k in range(j + 1, len(list_block)):
-            if list_block[j] <= list_block[k]:
-                num_over += 1
-        list_fall_len.append(N - j - 1 - num_over)
+        # 높은 박스,낮은 박스 위치 찾기
+        for i in range(len(box_height)):
+            if box_height[i] > max_num:
+                max_num = box_height[i]
+                max_idx = i  # 높은 박스의 위치(idx)
 
-    print(f'#{i+1} {max(list_fall_len)}')
+        for j in range(len(box_height)):
+            if box_height[j] < min_num:
+                min_num = box_height[j]
+                min_idx = j  # 낮은 박스의 위치(idx)
+
+        if cnt == dump_num:
+            break
+
+        box_height[i] -= 1
+        box_height[j] += 1
+
+        cnt += 1
+
+    print(f'#{tc} {max_num - min_num}')
