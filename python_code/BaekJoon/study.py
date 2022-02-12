@@ -1,32 +1,57 @@
-T = 10
+T = int(input())
 
+for tc in range(T):
 
-for tc in range(1, T + 1):
-    dump_num = int(input())
-    box_height = list(map(int, input().split()))  # 박스의 높이들
+    N = int(input())
 
-    cnt = 0
+    list_map = []
+    for i in range(N):
+        list_map.append([0] * N)
+
+    idx_point = [0, 0]
+
+    cnt = 1
     while True:
-        max_num = box_height[0]
-        min_num = box_height[0]
+        for i in range(2)[::-1]:
+            if cnt > N ** 2:
+                break
+            while True:
+                list_map[idx_point[0]][idx_point[1]] = cnt
+                cnt += 1
+                if cnt > N**2:
+                    break
+                idx_point[i] += 1
+                if idx_point[i] >= len(list_map) or list_map[idx_point[0]][idx_point[1]] != 0:
+                    idx_point[i] -= 1
+                    if i == 1:
+                        idx_point[1 - i] += 1
+                    else:
+                        idx_point[1 - i] -= 1
+                    break
 
-        # 높은 박스,낮은 박스 위치 찾기
-        for i in range(len(box_height)):
-            if box_height[i] > max_num:
-                max_num = box_height[i]
-                max_idx = i  # 높은 박스의 위치(idx)
-
-        for j in range(len(box_height)):
-            if box_height[j] < min_num:
-                min_num = box_height[j]
-                min_idx = j  # 낮은 박스의 위치(idx)
-
-        if cnt == dump_num:
+        if cnt > N ** 2:
             break
 
-        box_height[i] -= 1
-        box_height[j] += 1
+        for i in range(2)[::-1]:
+            if cnt > N ** 2:
+                break
+            while True:
+                list_map[idx_point[0]][idx_point[1]] = cnt
+                cnt += 1
+                if cnt > N**2:
+                    break
+                idx_point[i] -= 1
+                if idx_point[i] < 0 or list_map[idx_point[0]][idx_point[1]] != 0:
+                    idx_point[i] += 1
+                    if i == 1:
+                        idx_point[1 - i] -= 1
+                    else:
+                        idx_point[1 - i] += 1
+                    break
 
-        cnt += 1
+        if cnt > N ** 2:
+            break
 
-    print(f'#{tc} {max_num - min_num}')
+    print(f'#{tc + 1}')
+    for i in range(len(list_map)):
+        print(*list_map[i])
