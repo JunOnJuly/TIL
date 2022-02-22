@@ -1,14 +1,12 @@
 from math import sqrt
 
-while True:
+T = int(input())
+
+for tc in range(1, T + 1):
     N = int(input())
-
-    if not N:
-        break
-
     list_print = [2]
 
-    for num in range(3, 2*N + 1, 2):
+    for num in range(3, N + 1, 2):
         for i in range(len(list_print)):
             if not num % list_print[i]:
                 break
@@ -19,8 +17,11 @@ while True:
                 list_print.append(num)
                 break
 
-    for i in range(len(list_print)):
-        if list_print[i] > N:
-            list_print = list_print[i:]
+    for i in range(0, len(list_print)):
+        if list_print[i] >= N//2 + 1:
             break
-    print(len(list_print))
+        if N - list_print[i] in list_print:
+            gold = [list_print[i], N - list_print[i]]
+            continue
+
+    print(gold[0], gold[1])
