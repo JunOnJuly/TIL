@@ -18,7 +18,6 @@ for num in range(range_num, N + 1):
         if sum_num > N:
             break
         sum_num += int(str_num[i])
-
     if sum_num == N:
         print(num)
         switch = 1
