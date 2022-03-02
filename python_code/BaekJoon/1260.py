@@ -50,11 +50,14 @@ while True:
 
     else:
         stack.pop()
+        if not stack:
+            break
 print(*print_list_stack)
 # -------------------------------------------------------------------------
-que.append(V)
-print_list_que.append(V)
+for i in range(len(graph_list_que)):
+    graph_list_que[i].sort()
 
+que.append(V)
 for i in range(len(graph_list_que)):
     if V in graph_list_que[i]:
         graph_list_que[i].remove(V)
@@ -62,17 +65,35 @@ for i in range(len(graph_list_que)):
 while True:
     if sum([bool(x) for x in graph_list_que]) == 0:
         break
-    if graph_list_que[que[-1] - 1]:
-        temp_list = graph_list_que[que[-1] - 1]
+
+    if graph_list_que[que[0] - 1]:
+        temp_list = graph_list_que[que[0] - 1]
         len_que_ext = len(temp_list)
         que.extend(temp_list)
-        print_list_que.extend(sorted(temp_list))
+        print_list_que.append(que[0])
+        # print(f'que : {que}')
+        # print(f'print_list_que : {print_list_que}')
 
         for i in range(len_que_ext):
+            # print(f'num_remove : {que[-(i + 1)]}')
             for j in range(len(graph_list_que)):
                 if que[-(i+1)] in graph_list_que[j]:
                     graph_list_que[j].remove(que[-(i+1)])
-    else:
-        que.pop()
+                    # print(f'graph_list_que : {graph_list_que}')
+        del que[0]
 
+        if not que:
+            break
+    else:
+        if que:
+            print_list_que.append(que[0])
+            del que[0]
+            if not que:
+                break
+        else:
+            break
+
+if que:
+    for i in range(len(que)):
+        print_list_que.append(que[i])
 print(*print_list_que)
