@@ -6,7 +6,7 @@ def make_route(map_data, break_idx):
     print(map_data)
     que = deque([[0, 0]])
 
-    cnt = 0
+    cnt = 1
     while True:
         if not que:
             return -1
@@ -31,7 +31,7 @@ guide_move_j = [0, 1, 0, -1]
 
 N, M = map(int, input().split())
 
-data_input = [list(map(int, input().split())) for _ in range(N)]
+data_input = [list(map(int, list(input()))) for _ in range(N)]
 
 breakable_wall = []
 for i in range(len(data_input)):
@@ -51,8 +51,10 @@ for i in range(len(data_input)):
 min_cnt = M * N
 for i in range(len(breakable_wall)):
     cnt_route = make_route(data_input, i)
-    print(cnt_route)
     if cnt_route != -1 and cnt_route < min_cnt:
         min_cnt = cnt_route
 
-print(min_cnt)
+if min_cnt != M * N:
+    print(min_cnt)
+else:
+    print(-1)
