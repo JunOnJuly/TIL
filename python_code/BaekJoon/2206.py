@@ -16,8 +16,11 @@ while True:
     visited = [[1] * M for _ in range(N)]
     break_wall_num = 0
     cnt = 1
+    break_key = 0
     while True:
         if not que:
+            break
+        if cnt >= min_cnt:
             break
         for i in range(len(que)):
             pop_que = que.popleft()
@@ -27,25 +30,25 @@ while True:
                 i_next = i_now + guide_move_i[j]
                 j_next = j_now + guide_move_j[j]
                 if 0 <= i_next < N and 0 <= j_next < M and visited[i_next][j_next]:
-                    if data_input[i_next][j_next] == 1 and break_wall_num == 0 and broke[i_next][j_next]:
+                    if data_input[i_next][j_next] and break_wall_num == 0 and broke[i_next][j_next]:
                         break_wall_num = 1
                         visited[i_next][j_next] = 0
                         broke[i_next][j_next] = 0
                         que.append([i_next, j_next])
 
-                    elif data_input[i_next][j_next] == 0:
+                    elif not data_input[i_next][j_next] and visited[i_next][j_next]:
                         visited[i_next][j_next] = 0
                         que.append([i_next, j_next])
 
                     if que and que[-1] == [N - 1, M - 1]:
                         if min_cnt > cnt + 1:
                             min_cnt = cnt + 1
+                        break_key = 1
                         break
-
-            if que and que[-1] == [N - 1, M - 1]:
+            if break_key:
                 break
         cnt += 1
-    if que and que[-1] == [N - 1, M - 1]:
+    if break_key:
         break
     if break_wall_num == 0:
         break
