@@ -1,7 +1,7 @@
 from collections import deque
 
 
-def make_route(map_input, visited_wall):
+def make_route(map_input):
     global min_cnt
 
     que = deque([[0, 0]])
@@ -21,10 +21,9 @@ def make_route(map_input, visited_wall):
                 i_next = i_now + guide_move_i[j]
                 j_next = j_now + guide_move_j[j]
                 if 0 <= i_next < N and 0 <= j_next < M and visited[i_next][j_next]:
-                    if map_input[i_next][j_next] and break_wall_num == 0 and visited_wall[i_next][j_next]:
+                    if map_input[i_next][j_next] and break_wall_num == 0:
                         break_wall_num = 1
                         visited[i_next][j_next] = 0
-                        visited_wall[i_next][j_next] = 0
                         que.append([i_next, j_next])
 
                     elif not map_input[i_next][j_next] and visited[i_next][j_next]:
@@ -44,12 +43,11 @@ guide_move_i = [-1, 0, 1, 0]
 guide_move_j = [0, 1, 0, -1]
 
 data_input = [list(map(int, list(input()))) for _ in range(N)]
-min_cnt = M * N
-broke = [[1] * M for _ in range(N)]
+min_cnt = M * N + 1
 
-make_route(data_input, broke)
+make_route(data_input)
 
-if min_cnt != M * N:
+if min_cnt != M * N + 1:
     print(min_cnt)
 else:
     print(-1)
