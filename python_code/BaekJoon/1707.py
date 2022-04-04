@@ -9,27 +9,28 @@ for tc in range(T):
     map_input = [[] for _ in range(V + 1)]
     visited = [0] * (V + 1)
     visited[0] = 1
-    color_map = [1] * (V + 1)
 
     for i in range(len(data_input)):
         map_input[data_input[i][0]].append(data_input[i][1])
         map_input[data_input[i][1]].append(data_input[i][0])
 
+    visit_num = 0
     while True:
-        if all(visited):
+        if visit_num == V:
+            print('YES')
             break
         que = deque()
         for i in range(len(map_input)):
             if map_input[i]:
                 for j in range(len(map_input[i])):
                     if not visited[map_input[i][j]]:
-                        color_map[i] = 0
-                        que.append([i, 0])
-                        visited[i] = 1
+                        que.append([i, 2])
+                        visited[i] = 2
+                        visit_num += 1
                         break
-            if que:
-                break
-
+                if que:
+                    break
+        break_switch = 0
         while True:
             if not que:
                 break
@@ -37,20 +38,16 @@ for tc in range(T):
             idx_now, color = que.popleft()
             if map_input[idx_now]:
                 for i in range(len(map_input[idx_now])):
-                    if not visited[map_input[idx_now][i]]:
-                        que.append([map_input[idx_now][i], 1 - color])
-                        color_map[que[-1][0]] = 1 - color
-                        visited[que[-1][0]] = 1
-
-    break_switch = 0
-    for i in range(len(map_input)):
-        if map_input[i]:
-            for j in range(len(map_input[i])):
-                if color_map[i] == color_map[map_input[i][j]]:
-                    break_switch = 1
-                    print('NO')
-                    break
+                    if visited[map_input[idx_now][i]]:
+                        if visited[map_input[idx_now][i]] == color:
+                            print('NO')
+                            break_switch = 1
+                            break
+                    else:
+                        que.append([map_input[idx_now][i], 5 - color])
+                        visited[que[-1][0]] = 5 - color
+                        visit_num += 1
+            if break_switch:
+                break
         if break_switch:
             break
-        elif i == len(map_input) - 1:
-            print('YES')
