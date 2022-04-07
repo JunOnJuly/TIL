@@ -4,15 +4,17 @@ T = int(input())
 
 for tc in range(T):
     V, E = map(int, input().split())
-    data_input = [list(map(int, input().split())) for _ in range(E)]
+    data_input = []
+    for i in range(E):
+        data_input.extend(list(map(int, input().split())))
 
     map_input = [[] for _ in range(V + 1)]
     visited = [0] * (V + 1)
     visited[0] = 1
 
-    for i in range(len(data_input)):
-        map_input[data_input[i][0]].append(data_input[i][1])
-        map_input[data_input[i][1]].append(data_input[i][0])
+    for i in range(0, len(data_input), 2):
+        map_input[data_input[i]].append(data_input[i + 1])
+        map_input[data_input[i + 1]].append(data_input[i])
 
     visit_num = 0
     while True:
@@ -20,16 +22,12 @@ for tc in range(T):
             print('YES')
             break
         que = deque()
+
         for i in range(len(map_input)):
-            if map_input[i]:
-                for j in range(len(map_input[i])):
-                    if not visited[map_input[i][j]]:
-                        que.append([i, 2])
-                        visited[i] = 2
-                        visit_num += 1
-                        break
-                if que:
-                    break
+            if map_input[i] and not visited[i]:
+                que.append([i, 2])
+                break
+
         break_switch = 0
         while True:
             if not que:
