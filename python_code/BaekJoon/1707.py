@@ -4,6 +4,7 @@ def coloring_map():
             return
 
         now = stack[-1]
+
         if map_input[now]:
             if map_color[map_input[now][-1]]:
                 if map_color[map_input[now][-1]] == map_color[now]:
