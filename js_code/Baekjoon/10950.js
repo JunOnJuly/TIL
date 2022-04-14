@@ -1,30 +1,28 @@
-const T = require('readline')
+const readNum = require('readline')
 
-const t = T.createInterface({
+const rn = readNum.createInterface({
     input: process.stdin,
     output: process.stdout,
 })
 
-let N
+let T
 
-t.on('line', line => {
-    N = parseInt(line)
-}).on('close', () => {
-    for (let i = 0; i < N; i++) {
-        let readline = require('readline')
-        let rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout,
-        })
+rn.on('line', line => {
+    T = parseInt(line)
+    rn.close()
+}).on('close', line => {
+    const readNums = require('readline')
 
-        let dataInput = []
+    const rns = readNums.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+    })
 
-        rl.on('line', line => {
-            dataInput = line.split(' ').map((num) => {
-                parseInt(num)
+    let dataInput = []
+
+    rns.on('line', line => {
+        dataInput.push(line.split(' ').map((data) => {
+            return parseInt(data)
             })
-        }).on('close', () => {
-            console.log(dataInput[0] + dataInput[1])
-        })
-    }
-})
+        )
+    })
