@@ -23,10 +23,12 @@ for tc in range(T):
             break
         que = deque()
 
+        max_len = 0
         for i in range(len(map_input)):
-            if map_input[i] and not visited[i]:
-                que.append([i, 2])
-                break
+            if len(map_input[i]) > max_len:
+                max_idx = i
+
+        que.append([max_idx, 2])
 
         break_switch = 0
         while True:
