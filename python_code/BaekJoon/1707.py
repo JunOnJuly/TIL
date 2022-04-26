@@ -1,53 +1,48 @@
 from collections import deque
 
-T = int(input())
 
-for tc in range(T):
-    V, E = map(int, input().split())
-    data_input = []
-    for i in range(E):
-        data_input.extend(list(map(int, input().split())))
-
-    map_input = [[] for _ in range(V + 1)]
-    visited = [0] * (V + 1)
-    visited[0] = 1
-
-    for i in range(0, len(data_input), 2):
-        map_input[data_input[i]].append(data_input[i + 1])
-        map_input[data_input[i + 1]].append(data_input[i])
-
-    visit_num = 0
+def coloring(que, tree_color):
     while True:
-        if visit_num == V:
+        if not que:
+            return
+
+        pop_que = que.popleft()
+        for _ in range(len(tree[pop_que])):
+            if tree_color[tree[pop_que][-1]]:
+                if tree_color[tree[pop_que][-1]] == tree_color[pop_que]:
+                    return 'NO'
+                else:
+                    tree[pop_que].pop()
+                    continue
+            else:
+                tree_color[tree[pop_que].pop()] = 3 - tree_color[pop_que]
+
+
+K = int(input())
+
+for _ in range(K):
+    V, E = map(int, input().split())
+    data_input = [list(map(int, input().split())) for _ in range(E)]
+    tree = [[] for _ in range(V + 1)]
+    tree_color = [3] + [0 for _ in range(V)]
+
+    for data in data_input:
+        tree[data[0]].append(data[1])
+        tree[data[1]].append(data[0])
+
+    que = deque()
+
+    while True:
+        if all(tree_color):
             print('YES')
             break
-        que = deque()
 
-        max_len = 0
-        for i in range(len(map_input)):
-            if len(map_input[i]) > max_len:
-                max_idx = i
-
-        que.append([max_idx, 2])
-
-        break_switch = 0
-        while True:
-            if not que:
+        for i in range(1, V + 1):
+            if tree[i]:
+                que.append(i)
+                tree_color[i] = 1
                 break
 
-            idx_now, color = que.popleft()
-            if map_input[idx_now]:
-                for i in range(len(map_input[idx_now])):
-                    if visited[map_input[idx_now][i]]:
-                        if visited[map_input[idx_now][i]] == color:
-                            print('NO')
-                            break_switch = 1
-                            break
-                    else:
-                        que.append([map_input[idx_now][i], 5 - color])
-                        visited[que[-1][0]] = 5 - color
-                        visit_num += 1
-            if break_switch:
-                break
-        if break_switch:
+        if coloring(que, tree_color) == 'NO':
+            print('NO')
             break
