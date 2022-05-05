@@ -12,4 +12,5 @@ while True:
     stack = [usados.pop()]
 
     while True:
-
+        if not stack:
+            break
