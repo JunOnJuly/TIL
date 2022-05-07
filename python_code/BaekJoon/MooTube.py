@@ -11,9 +11,9 @@ while True:
     if not usados:
         break
 
-    stack = [usados.pop()]
+    que = deque([usados.pop()])
 
     while True:
-        if not stack:
+        if not que:
             break
 
