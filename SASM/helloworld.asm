@@ -5,7 +5,6 @@ global CMAIN
 CMAIN:
     ;write your code here
     
-    ;주석
     PRINT_STRING msg
     
     xor rax, rax

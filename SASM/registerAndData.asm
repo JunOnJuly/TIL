@@ -13,11 +13,15 @@ CMAIN:
     mov cl, 0xff
     
     mov al, 0x00
+    mov [a], byte 0x55
+    
+    
     mov rax, rdx
     
     ; 메모리 < - > 레지스터
-    
-    
+    mov rax, a ; a 의 주소를 rax 에 복사
+    mov rax, [a] ; a 의 값을 rax 에 복사
+    mov al, [a] ; a 의 최하위 값만 rax에 복사 
     xor rax, rax
     ret
     
