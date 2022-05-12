@@ -26,10 +26,30 @@ CMAIN:
     PRINT_DEC 1, al
     NEWLINE
     
+    mov bl, 3 ; 레지스터 + 레지스터
+    add al, bl
+    PRINT_DEC 1, al
+    NEWLINE
+    
+    add [num], byte 1 ; 크기를 할당해줘야함
+    PRINT_DEC 1, [num]
+    NEWLINE
+    
     xor rax, rax
     ret
 
-
+    ; 곱하기 연산
+    ; mul reg
+    ; - mul bl => al * bl
+    ; -- 연산 결과를 ax 에 저장
+    ; - mul bx => ax * bx
+    ; -- 연산 결과는 dx ax 에 저장
+    
+    ; 나누기 연산
+    ; div reg
+    ; -div bl => ax / bl
+    ; -- 연산 결과는 al (몫) ah (나머지)
+    
 section .data
 
 
