@@ -2,7 +2,6 @@ import random
 import matplotlib.pyplot as plt
 import math
 
-
 def make_random_points(x_limit, data_num, theta_num):
     theta_list = [random.randint(-5, 5) for _ in range(theta_num)]
 
