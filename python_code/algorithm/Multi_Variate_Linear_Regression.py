@@ -71,7 +71,7 @@ def calculate_gradient(data_x, data_y, theta_list, theta_num, data_num):
 
 
 
-x_limit = [-100, 100]
+x_limit = [-50, 50]
 data_num = 10
 theta_num = 4
 theta_list = [1 for _ in range(theta_num)]
