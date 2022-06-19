@@ -5,8 +5,6 @@ data_input = []
 for _ in range(N):
     data_input.append(list(map(int, input().split())) + [1])
 
-print(data_input)
-
 for i in range(N):
     for j in range(N):
         if i == j:
@@ -15,4 +13,5 @@ for i in range(N):
             if data_input[i][1] <= data_input[j][1]:
                 data_input[i][2] += 1
 
-print(data_input)
+for i in range(N):
+    print(data_input[i][2], end=' ')
