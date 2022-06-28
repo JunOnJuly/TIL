@@ -1,18 +1,18 @@
-def binary_search(list_data, list_length, find_number):
+def binary_search(data_list, find_num, start, end):
 
-    if not list_length:
+    if end == start:
+        if data_list[end] == find_num:
+            return 1
+    if end < start:
         return 0
+    length = end - start + 1
+    half = start + length//2
 
-    half_index = list_length // 2
-
-    if list_data[half_index] == find_number:
+    if data_list[half] == find_num:
         return 1
-    else:
-        if list_length == 1:
-            return 0
 
-        return binary_search(list_data[:half_index], len(list_data[:half_index]), find_number) + \
-               binary_search(list_data[half_index + 1:], len(list_data[half_index + 1:]), find_number)
+    else:
+        return binary_search(data_list, find_num, start, half - 1) + binary_search(data_list, find_num, half + 1, end)
 
 
 N = int(input())
@@ -20,5 +20,5 @@ num_input = list(map(int, input().split()))
 M = int(input())
 num_differ = list(map(int, input().split()))
 
-for i in range(M):
-    print(binary_search(num_input, N, num_differ[i]), end=' ')
+for num in num_differ:
+    print(binary_search(num_input, num, 0, len(num_input) - 1))
