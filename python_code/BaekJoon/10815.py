@@ -21,4 +21,4 @@ M = int(input())
 num_differ = list(map(int, input().split()))
 
 for num in num_differ:
-    print(binary_search(num_input, num, 0, len(num_input) - 1))
+    print(*binary_search(num_input, num, 0, len(num_input) - 1))
