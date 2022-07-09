@@ -21,5 +21,5 @@ for _ in range(q):
     r: int = data_input[2]
 
     if alpha not in alpha_list:
-        alpha_index = split_by_alpha(S, alpha)
+        alpha_index: list = split_by_alpha(S, alpha)
 
