@@ -7,9 +7,10 @@ def binary_search(find_num, num_list, start, end):
 
     if num_list[half] == find_num:
         return 1
+    elif find_num > num_list[half]:
+        return binary_search(find_num, num_list, half + 1, end)
     else:
-        return binary_search(find_num, num_list, start, half-1) + \
-                binary_search(find_num, num_list, half + 1, end)
+        return binary_search(find_num, num_list, start, half - 1)
 
 
 def divide_sort(num_list, start, end):
@@ -59,4 +60,4 @@ M = int(input())
 find_list = list(map(int, input().split()))
 
 for i in range(M):
-    print(binary_search(find_list[i], num_list, 0, M-1))
+    print(binary_search(find_list[i], num_list, 0, N-1))
