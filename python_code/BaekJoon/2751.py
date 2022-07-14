@@ -16,6 +16,10 @@ def divide_sort(num_list, start, end):
     length_front = len(front_list)
     length_back = len(back_list)
 
+    idx_front = 0
+    idx_back = 0
+    while True:
+
 
 
 N = int(input())
