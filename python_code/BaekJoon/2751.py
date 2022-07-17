@@ -20,10 +20,10 @@ def divide_sort(num_list, start, end):
     idx_back = 0
 
     return_list = []
-    
+
     while True:
         if idx_front == length_front:
-
+            return_list.extend(back_list[idx_back:])
 
 
 N = int(input())
