@@ -24,6 +24,8 @@ def divide_sort(num_list, start, end):
     while True:
         if idx_front == length_front:
             return_list.extend(back_list[idx_back:])
+        elif idx_back == length_back:
+            return_list.extend(front_list[idx_front:])
 
 
 N = int(input())
