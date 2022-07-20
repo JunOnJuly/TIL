@@ -30,7 +30,9 @@ def divide_sort(num_list, start, end):
             return_list.extend(front_list[idx_front:])
             return return_list
 
-
+        if front_list[idx_front] > back_list[idx_back]:
+            return_list.append(front_list[idx_front])
+            idx_front += 1
 
 
 N = int(input())
