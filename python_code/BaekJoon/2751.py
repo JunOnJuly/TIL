@@ -34,6 +34,10 @@ def divide_sort(num_list, start, end):
             return_list.append(front_list[idx_front])
             idx_front += 1
 
+        else:
+            return_list.append(back_list[idx_back])
+            idx_back += 1
+
 
 N = int(input())
 num_list = [int(input()) for _ in range(N)]
