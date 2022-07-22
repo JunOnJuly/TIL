@@ -42,3 +42,5 @@ def divide_sort(num_list, start, end):
 N = int(input())
 num_list = [int(input()) for _ in range(N)]
 
+for num in num_list:
+    print(num)
