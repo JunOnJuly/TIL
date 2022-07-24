@@ -3,7 +3,7 @@ def divide_sort(num_list, start, end):
     if length == 1:
         return [num_list[start]]
     elif length == 2:
-        if num_list[start] < num_list[end]:
+        if num_list[start] > num_list[end]:
             return [num_list[end], num_list[start]]
         else:
             return [num_list[start], num_list[end]]
@@ -30,7 +30,7 @@ def divide_sort(num_list, start, end):
             return_list.extend(front_list[idx_front:])
             return return_list
 
-        if front_list[idx_front] > back_list[idx_back]:
+        if front_list[idx_front] < back_list[idx_back]:
             return_list.append(front_list[idx_front])
             idx_front += 1
 
@@ -42,5 +42,7 @@ def divide_sort(num_list, start, end):
 N = int(input())
 num_list = [int(input()) for _ in range(N)]
 
-for num in num_list:
+sorted_list = divide_sort(num_list, 0, N-1)
+
+for num in sorted_list:
     print(num)
