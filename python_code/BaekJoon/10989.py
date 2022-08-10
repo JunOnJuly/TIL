@@ -1,20 +1,14 @@
-N = int(input())
+import sys
 
-num_list = []
+N = int(sys.stdin.readline())
 
-for i in range(N):
-    num = int(input())
+num_count = [0]*10001
 
-    idx_new = 0
-    if num_list:
-        for j in range(num_list - 1):
-            if num_list[j] < num:
-                idx_new += 1
-            else:
-                num_list.insert(idx_new, num)
-                break
+for _ in range(N):
+    num = int(sys.stdin.readline())
+    num_count[num] += 1
 
-    else:
-        num_list.append(num)
-
-print(num_list)
+for i in range(10001):
+    if num_count[i]:
+        for j in range(num_count[i]):
+            print(i)
