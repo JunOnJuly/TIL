@@ -5,7 +5,12 @@ import matplotlib.pyplot as plt
 
 
 def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
-
+    '''
+    :param point_num: how much data is
+    :param x_limit: maximum range of x (0 < x <= x_limit)
+    :param y_limit: maximun range of y (0 < y <= y_limit)
+    :return: two lists - x data, y data
+    '''
     points_x_list: list = []
     points_y_list: list = []
     xy_list: list = []
