@@ -5,18 +5,24 @@ import matplotlib.pyplot as plt
 
 
 def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
-    '''
+    """
     :param point_num: how much data is
     :param x_limit: maximum range of x (0 < x <= x_limit)
     :param y_limit: maximun range of y (0 < y <= y_limit)
     :return: two lists - x data, y data
-    '''
+    """
+
+    # x data to return
     points_x_list: list = []
+    # y data to return
     points_y_list: list = []
+    # index data to avoid duplication
     xy_list: list = []
 
-    cnt: int =0
+    # count of data
+    cnt: int = 0
     while True:
+        # if number of data same as target number, stop add data
         if cnt == point_num:
             break
         idx_random: list = [rd.randint(0, x_limit), rd.randint(0, y_limit)]
