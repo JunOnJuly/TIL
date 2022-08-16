@@ -25,7 +25,9 @@ def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
         # if number of data same as target number, stop add data
         if cnt == point_num:
             break
+        # makes random data for test
         idx_random: list = [rd.randint(0, x_limit), rd.randint(0, y_limit)]
+        # avoid duplication
         if idx_random not in xy_list:
             xy_list.append(idx_random)
         else:
@@ -33,6 +35,7 @@ def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
 
         cnt += 1
 
+    # split index to easy use
     for i in range(point_num):
         points_x_list.append(xy_list[i][0])
         points_y_list.append(xy_list[i][1])
