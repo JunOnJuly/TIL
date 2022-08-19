@@ -4,6 +4,7 @@ import random as rd
 import matplotlib.pyplot as plt
 
 
+# function makes random data for test
 def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
     """
     :param point_num: how much data is
@@ -43,6 +44,7 @@ def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
     return points_x_list, points_y_list
 
 
+# function makes clustering point
 def make_random_clusters(cluster_num: int, x_limit: int, y_limit: int) -> list:
     cluster_x_list: list = []
     cluster_y_list: list = []
