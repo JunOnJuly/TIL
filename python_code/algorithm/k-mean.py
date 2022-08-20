@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 # function makes random data for test
 def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
     """
-    :param point_num: how much data is
-    :param x_limit: maximum range of x (0 < x <= x_limit)
-    :param y_limit: maximun range of y (0 < y <= y_limit)
+    :param point_num: how much data is (0 < point_num <= (x_limit+1)*(y_limit+1))
+    :param x_limit: maximum range of x (0 <= x <= x_limit)
+    :param y_limit: maximun range of y (0 <= y <= y_limit)
     :return: two lists - x data, y data
     """
 
@@ -46,6 +46,12 @@ def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
 
 # function makes clustering point
 def make_random_clusters(cluster_num: int, x_limit: int, y_limit: int) -> list:
+    """
+    :param cluster_num: how much cluster is (0 < cluster_num <= 7)
+    :param x_limit: maximum range of x (0 <= x <= x_limit)
+    :param y_limit: maximun range of y (0 <= y <= y_limit)
+    :return: two lists - x data, y data
+    """
     cluster_x_list: list = []
     cluster_y_list: list = []
     xy_list: list = []
