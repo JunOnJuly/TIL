@@ -52,21 +52,32 @@ def make_random_clusters(cluster_num: int, x_limit: int, y_limit: int) -> list:
     :param y_limit: maximun range of y (0 <= y <= y_limit)
     :return: two lists - x data, y data
     """
+
+    # x data to return
     cluster_x_list: list = []
+    # y data to return
     cluster_y_list: list = []
+    # index data to avoid duplication
     xy_list: list = []
 
+    # count of cluster
     cnt: int = 0
     while True:
+        # if number of cluster same as target number, stop add cluster
         if cnt == cluster_num:
             break
+        # makes random cluster
         idx_random: list = [rd.randint(0, x_limit), rd.randint(0, y_limit)]
 
+        # avoid duplication
         if idx_random not in xy_list:
             xy_list.append(idx_random)
         else:
             continue
+
         cnt += 1
+
+    # split index to easy use
     for i in range(cluster_num):
         cluster_x_list.append(xy_list[i][0])
         cluster_y_list.append(xy_list[i][1])
