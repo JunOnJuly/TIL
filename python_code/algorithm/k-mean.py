@@ -85,6 +85,7 @@ def make_random_clusters(cluster_num: int, x_limit: int, y_limit: int) -> list:
     return cluster_x_list, cluster_y_list
 
 
+# calculate distance between cluster and data
 def cal_dist(point1x: int, point1y: int, point2x: int, point2y: int) -> int:
     return round(((point1x - point2x) ** 2 + (point1y - point2y) ** 2) ** (1/2), 5)
 
