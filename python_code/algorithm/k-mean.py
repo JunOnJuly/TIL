@@ -97,7 +97,17 @@ def cal_dist(point1x: int, point1y: int, point2x: int, point2y: int) -> int:
     return round(((point1x - point2x) ** 2 + (point1y - point2y) ** 2) ** (1/2), 5)
 
 
+# classify data with distance
 def classify_data(point_num: int, cluster_num: int, point_list_x: list, point_list_y: list, cluster_list_x: list, cluster_list_y: list) -> list:
+    """
+    :param point_num:
+    :param cluster_num:
+    :param point_list_x:
+    :param point_list_y:
+    :param cluster_list_x:
+    :param cluster_list_y:
+    :return:
+    """
     point_in_cluster: list = [[] for _ in range(cluster_num)]
     for i in range(point_num):
         min_dist: int = 1.5 * (point_num ** 2)
