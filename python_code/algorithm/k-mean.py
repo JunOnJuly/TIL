@@ -49,7 +49,7 @@ def make_random_clusters(cluster_num: int, x_limit: int, y_limit: int) -> list:
     """
     :param cluster_num: how much cluster is (0 < cluster_num <= 7)
     :param x_limit: maximum range of x (0 <= x <= x_limit)
-    :param y_limit: maximun range of y (0 <= y <= y_limit)
+    :param y_limit: maximum range of y (0 <= y <= y_limit)
     :return: two lists - x data, y data
     """
 
@@ -100,13 +100,13 @@ def cal_dist(point1x: int, point1y: int, point2x: int, point2y: int) -> int:
 # classify data with distance
 def classify_data(point_num: int, cluster_num: int, point_list_x: list, point_list_y: list, cluster_list_x: list, cluster_list_y: list) -> list:
     """
-    :param point_num:
-    :param cluster_num:
-    :param point_list_x:
-    :param point_list_y:
-    :param cluster_list_x:
-    :param cluster_list_y:
-    :return:
+    :param point_num: how much data is
+    :param cluster_num: how much cluster is
+    :param point_list_x: x index of data
+    :param point_list_y: y index of data
+    :param cluster_list_x: x index of cluster
+    :param cluster_list_y: y index of cluster
+    :return: list of data classified
     """
     point_in_cluster: list = [[] for _ in range(cluster_num)]
     for i in range(point_num):
