@@ -108,13 +108,20 @@ def classify_data(point_num: int, cluster_num: int, point_list_x: list, point_li
     :param cluster_list_y: y index of cluster
     :return: list of data classified
     """
+
+    # list of data classified to return
     point_in_cluster: list = [[] for _ in range(cluster_num)]
+
     for i in range(point_num):
+        # minimum distance
         min_dist: int = 1.5 * (point_num ** 2)
+        # number of closest cluster
         selected_cluster: int = cluster_num
         for j in range(cluster_num):
+            # distance between data and cluster
             to_cluster_dist: int = cal_dist(point_list_x[i], point_list_y[i], cluster_list_x[j], cluster_list_y[j])
 
+            # find closest cluster
             if to_cluster_dist < min_dist:
                 min_dist = to_cluster_dist
                 selected_cluster = j
