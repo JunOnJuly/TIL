@@ -129,7 +129,17 @@ def classify_data(point_num: int, cluster_num: int, point_list_x: list, point_li
     return point_in_cluster
 
 
-def replace_cluster(cluster_num: int, point_cluster_list: list, point_list_x: list, point_list_y: list):
+# replace cluster to center of classified data
+def replace_cluster(cluster_num: int, point_cluster_list: list, point_list_x: list, point_list_y: list) -> list:
+    """
+    :param cluster_num: how much cluster is
+    :param point_cluster_list: list classified data
+    :param point_list_x: x index of data
+    :param point_list_y: y index of data
+    :return: two lists - x data, y data
+    """
+
+    #
     cluster_list_x: list = []
     cluster_list_y: list = []
 
