@@ -139,15 +139,20 @@ def replace_cluster(cluster_num: int, point_cluster_list: list, point_list_x: li
     :return: two lists - x data, y data
     """
 
-    #
+    # x of replaced cluster
     cluster_list_x: list = []
+    # y of replaced cluster
     cluster_list_y: list = []
 
     for i in range(cluster_num):
+        # how much data is close with cluster
         length_cluster: int = len(point_cluster_list[i])
+        # sum of x
         sum_point_x: int = sum([point_list_x[point_cluster_list[i][j]] for j in range(length_cluster)])
+        # sum of y
         sum_point_y: int = sum([point_list_y[point_cluster_list[i][j]] for j in range(length_cluster)])
 
+        # add replaced cluster
         cluster_list_x.append(round(sum_point_x / length_cluster))
         cluster_list_y.append(round(sum_point_y / length_cluster))
 
