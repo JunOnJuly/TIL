@@ -159,10 +159,14 @@ def replace_cluster(cluster_num: int, point_cluster_list: list, point_list_x: li
     return cluster_list_x, cluster_list_y
 
 
+# number of data
 n: int = 500
+# limit of data
 limitx: int = 10000
 limity: int = 10000
+# number of cluster
 m: int = 5
+
 
 x, y = make_random_points(n, limitx, limity)
 X, Y = make_random_clusters(m, limitx, limity)
