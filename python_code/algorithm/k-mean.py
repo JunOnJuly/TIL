@@ -171,7 +171,7 @@ m: int = 5
 x, y = make_random_points(n, limitx, limity)
 # make init cluster
 X, Y = make_random_clusters(m, limitx, limity)
-cluster_list: list = []
+
 
 while True:
     X_pre = X[:]
