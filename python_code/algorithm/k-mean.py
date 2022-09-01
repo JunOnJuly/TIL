@@ -174,8 +174,10 @@ X, Y = make_random_clusters(m, limitx, limity)
 
 
 while True:
+    # cluster data before
     X_pre = X[:]
     Y_pre = Y[:]
+    # classify data with cluster
     classify_list: list = classify_data(n, m, x, y, X, Y)
     X, Y = replace_cluster(m, classify_list, x, y)
     if [X_pre, Y_pre] == [X, Y]:
