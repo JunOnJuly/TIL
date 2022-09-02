@@ -179,6 +179,7 @@ while True:
     Y_pre = Y[:]
     # classify data with cluster
     classify_list: list = classify_data(n, m, x, y, X, Y)
+    # replace cluster with classify data
     X, Y = replace_cluster(m, classify_list, x, y)
     if [X_pre, Y_pre] == [X, Y]:
         break
