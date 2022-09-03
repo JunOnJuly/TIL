@@ -181,6 +181,7 @@ while True:
     classify_list: list = classify_data(n, m, x, y, X, Y)
     # replace cluster with classify data
     X, Y = replace_cluster(m, classify_list, x, y)
+    # end if cluster is not changed
     if [X_pre, Y_pre] == [X, Y]:
         break
 
