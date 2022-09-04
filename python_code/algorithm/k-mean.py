@@ -186,9 +186,9 @@ while True:
         break
 
 
+# color guide of graph
 plt_guide: list = ['r', 'g', 'b', 'c', 'm', 'y', 'k']
 for i in range(m):
-    # plt.plot(X[i], Y[i], f'{plt_guide[i]}o')
     plt.plot([x[j] for j in classify_list[i]], [y[j] for j in classify_list[i]], f'{plt_guide[i]}.')
 
 plt.show()
