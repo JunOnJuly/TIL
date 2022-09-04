@@ -10,7 +10,7 @@ def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
     :param point_num: how much data is (0 < point_num <= (x_limit+1)*(y_limit+1))
     :param x_limit: maximum range of x (0 <= x <= x_limit)
     :param y_limit: maximun range of y (0 <= y <= y_limit)
-    :return: two lists - x data, y data
+    :return: three lists - x data, y data, index data
     """
 
     # x data to return
@@ -41,7 +41,7 @@ def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
         points_x_list.append(xy_list[i][0])
         points_y_list.append(xy_list[i][1])
 
-    return points_x_list, points_y_list
+    return points_x_list, points_y_list, xy_list
 
 
 # function makes clustering point
@@ -50,7 +50,7 @@ def make_random_clusters(cluster_num: int, x_limit: int, y_limit: int) -> list:
     :param cluster_num: how much cluster is (0 < cluster_num <= 7)
     :param x_limit: maximum range of x (0 <= x <= x_limit)
     :param y_limit: maximum range of y (0 <= y <= y_limit)
-    :return: two lists - x data, y data
+    :return: three lists - x data, y data, index data
     """
 
     # x data to return
@@ -82,7 +82,7 @@ def make_random_clusters(cluster_num: int, x_limit: int, y_limit: int) -> list:
         cluster_x_list.append(xy_list[i][0])
         cluster_y_list.append(xy_list[i][1])
 
-    return cluster_x_list, cluster_y_list
+    return cluster_x_list, cluster_y_list, xy_list
 
 
 # calculate distance between cluster and data
@@ -168,9 +168,9 @@ limity: int = 10000
 m: int = 5
 
 # make test data
-x, y = make_random_points(n, limitx, limity)
+x, y, xy = make_random_points(n, limitx, limity)
 # make init cluster
-X, Y = make_random_clusters(m, limitx, limity)
+X, Y, XY = make_random_clusters(m, limitx, limity)
 
 
 while True:
