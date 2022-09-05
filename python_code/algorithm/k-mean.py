@@ -159,6 +159,16 @@ def replace_cluster(cluster_num: int, point_cluster_list: list, point_list_x: li
     return cluster_list_x, cluster_list_y
 
 
+def draw_line(data_index_list: list, cluster_index_list: list, classified_data_list: list) -> list:
+    """
+    :param data_index_list: list index of data
+    :param cluster_index_list: list index of cluster
+    :param classified_data_list: list classified data
+    :return: list data to line
+    """
+
+
+
 # number of data
 n: int = 500
 # limit of data
