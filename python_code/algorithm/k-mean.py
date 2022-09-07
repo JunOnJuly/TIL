@@ -159,14 +159,20 @@ def replace_cluster(cluster_num: int, point_cluster_list: list, point_list_x: li
     return cluster_list_x, cluster_list_y
 
 
-def draw_line(data_index_list: list, cluster_index_list: list, classified_data_list: list) -> list:
+def draw_line(cluster_num: int, data_index_list: list, cluster_index_list: list, classified_data_list: list) -> list:
     """
+    :param cluster_num: how much cluster is
     :param data_index_list: list index of data
     :param cluster_index_list: list index of cluster
     :param classified_data_list: list classified data
     :return: list data to line
     """
 
+    for i in range(cluster_num):
+        # length of data in ith cluster
+        data_length: int = len(classified_data_list[i])
+        # data in ith cluster
+        data_close_cluster: list = [data_index_list[classified_data_list[i][j]] for j in range(data_length)]
 
 
 # number of data
