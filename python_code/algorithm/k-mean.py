@@ -36,6 +36,9 @@ def make_random_points(point_num: int, x_limit: int, y_limit: int) -> list:
 
         cnt += 1
 
+    # sort list of data
+    xy_list = sorted(xy_list, key=lambda idx: (abs(x_limit//2 - idx[0]), abs(y_limit//2 - idx[1])))
+
     # split index to easy use
     for i in range(point_num):
         points_x_list.append(xy_list[i][0])
@@ -159,22 +162,6 @@ def replace_cluster(cluster_num: int, point_cluster_list: list, point_list_x: li
     return cluster_list_x, cluster_list_y
 
 
-def draw_line(cluster_num: int, data_index_list: list, cluster_index_list: list, classified_data_list: list) -> list:
-    """
-    :param cluster_num: how much cluster is
-    :param data_index_list: list index of data
-    :param cluster_index_list: list index of cluster
-    :param classified_data_list: list classified data
-    :return: list data to line
-    """
-
-    for i in range(cluster_num):
-        # length of data in ith cluster
-        data_length: int = len(classified_data_list[i])
-        # data in ith cluster
-        data_close_cluster: list = [data_index_list[classified_data_list[i][j]] for j in range(data_length)]
-
-
 # number of data
 n: int = 500
 # limit of data
@@ -205,6 +192,7 @@ while True:
 # color guide of graph
 plt_guide: list = ['r', 'g', 'b', 'c', 'm', 'y', 'k']
 for i in range(m):
+    plt.plot([x[j] for j in classify_list[i]], [y[j] for j in classify_list[i]], color=f'{plt_guide[i]}')
     plt.plot([x[j] for j in classify_list[i]], [y[j] for j in classify_list[i]], f'{plt_guide[i]}.')
 
 plt.show()
