@@ -110,6 +110,7 @@ for i in range(theta_num):
     else:
         plt_title += f'{round(calculated_theta[i], 4)}'
 
+# -------plot------- #
 plt.plot(data_x, data_y, 'k.')
 plt.plot(origin_x_list, origin_y_list, 'b')
 plt.plot(origin_x_list, calculated_y_list, 'r')
