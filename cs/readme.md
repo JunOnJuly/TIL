@@ -1,4 +1,4 @@
-# CS Study Index
+# CS Study With Python Index
 ---
 ```mermaid
 flowchart LR
