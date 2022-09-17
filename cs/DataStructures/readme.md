@@ -1,4 +1,4 @@
-# CS Study Index
+# DataStructures Study Index
 ---
 ```mermaid
 flowchart LR
