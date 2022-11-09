@@ -163,18 +163,16 @@ def replace_cluster(cluster_num: int, point_cluster_list: list, point_list_x: li
 
 
 # number of data
-n: int = 500
+n: int = 100
 # limit of data
-limitx: int = 10000
-limity: int = 10000
+limitx: int = 1000
+limity: int = 1000
 # number of cluster
 m: int = 6
-
 # make test data
 x, y, xy = make_random_points(n, limitx, limity)
 # make init cluster
 X, Y, XY = make_random_clusters(m, limitx, limity)
-
 
 while True:
     # cluster data before
@@ -191,8 +189,11 @@ while True:
 
 # color guide of graph
 plt_guide: list = ['r', 'g', 'b', 'c', 'm', 'y', 'k']
+
+fig, (ax1, ax2) = plt.subplots(1, 2)
+
 for i in range(m):
-    plt.plot([x[j] for j in classify_list[i]], [y[j] for j in classify_list[i]], color=f'{plt_guide[i]}')
-    plt.plot([x[j] for j in classify_list[i]], [y[j] for j in classify_list[i]], f'{plt_guide[i]}.')
+    ax1.plot([x[j] for j in classify_list[i]], [y[j] for j in classify_list[i]], f'{plt_guide[i]}.')
+    ax2.plot([x[j] for j in classify_list[i]], [y[j] for j in classify_list[i]], plt_guide[i])
 
 plt.show()
