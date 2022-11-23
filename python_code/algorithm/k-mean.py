@@ -225,7 +225,7 @@ n: int = 1000
 limitx: int = 1000
 limity: int = 1000
 # number of cluster
-m: int = 5
+m: int = 7
 # make test data
 x, y, xy = make_random_points(n, limitx, limity)
 # make init cluster
