@@ -2,6 +2,7 @@ import random
 import matplotlib.pyplot as plt
 import math
 
+
 def make_random_points(num_data, limit_x):
     degree_trigger = random.randint(0, 2)
 
@@ -16,7 +17,7 @@ def make_random_points(num_data, limit_x):
 
     for i in range(num_data):
         random_x = random.randint(-limit_x, limit_x+1)
-        random_y = random.uniform((random_x - 0.5*limit_x) * degree, (random_x + 0.5*limit_x) * degree)
+        random_y = random.gauss(mu=random_x*degree, sigma=1000)
 
         point_list_x.append(random_x)
         point_list_y.append(random_y)
@@ -25,65 +26,58 @@ def make_random_points(num_data, limit_x):
     return point_list_x, point_list_y, point_list_xy
 
 
-def simple_degree(point1_x, point1_y, point2_x, point2_y):
-    degree = (point2_y - point1_y)/(point2_x - point1_x)
-    x_intercept = point1_x - (point1_y/degree)
-    y_intercept = -degree*point1_x + point1_y
-    return (point2_y - point1_y)/(point2_x - point1_x),  x_intercept, y_intercept
+def calculate_cost(theta_0, theta_1, random_data_x, random_data_y, num_data):
+    simple_cost_0 = 0
+    simple_cost_1 = 0
+    cost = 0
+    for i in range(num_data):
+        simple_cost_0 += theta_0 + random_data_x[i]*theta_1 - random_data_y[i]
+        simple_cost_1 += (theta_0 + random_data_x[i]*theta_1 - random_data_y[i])*random_data_x[i]
+        cost += (theta_0 + random_data_x[i]*theta_1 - random_data_y[i]) ** 2
+
+    return round(cost / (2*num_data), 4), round(simple_cost_0/num_data, 4), round(simple_cost_1/num_data, 4)
 
 
-def decide_degree(simple_degree, y_intercept, x_list, y_list, alpha):
-    sum_value_min = 0
-    sum_value_pl = 0
+def calculate_gradient(theta_0, theta_1, random_data_x, random_data_y, num_data, alpha):
+    min_cost = math.inf
+    min_count = 0
+    min_theta_0 = 0
+    min_theta_1 = 1
 
-    for i in range(len(x_list)):
-        sum_value_min += (y_list[i] - (x_list[i] * (simple_degree - alpha) + y_intercept)) ** 2
-
-    for i in range(len(x_list)):
-        sum_value_pl += (y_list[i] - (x_list[i] * (simple_degree + alpha) + y_intercept)) ** 2
-
-    if sum_value_min > sum_value_pl:
-        return simple_degree + alpha, sum_value_pl
-    else:
-        return simple_degree - alpha, sum_value_min
-
-
-def linear_regression(simple_degree, y_intercept,  x_list, y_list, aplha):
-    min_value = math.inf
-    degree = simple_degree
     while True:
-        print(degree)
-        degree, value = decide_degree(degree, y_intercept, x_list, y_list, alpha)
+        cost, simple_cost_0, simple_cost_1 = calculate_cost(theta_0, theta_1, random_data_x, random_data_y, num_data)
 
-        if min_value > value:
-            min_value = value
-            degree = degree
-            continue
+        theta_0 = round(theta_0 - (alpha*(simple_cost_0)), 4)
+        theta_1 = round(theta_1 - (alpha*(simple_cost_1)), 4)
+
+        if min_cost > cost:
+            min_cost = cost
+            min_count = 0
+            min_theta_0 = theta_0
+            min_theta_1 = theta_1
+
         else:
-            return degree
+            if min_count == 10:
+                break
+            min_count += 1
+
+    return min_theta_0, min_theta_1
 
 
-num_data = 100
+num_data = 200
 limit_x = 1000
-alpha = 0.01
+alpha = 0.000005
+
+theta_0 = 0
+theta_1 = 1
 
 random_data_x, random_data_y, random_data_xy = make_random_points(num_data, limit_x)
+cost = calculate_cost(theta_0, theta_1, random_data_x, random_data_y, num_data)
+theta_0, theta_1 = calculate_gradient(theta_0, theta_1, random_data_x, random_data_y, num_data, alpha)
 
-temp_num_1 = random.randint(0, num_data+1)
-while True:
-    temp_num_2 = random.randint(0, num_data+1)
-    if temp_num_1 == temp_num_2:
-        continue
-    break
-
-temp_degree, x_intercept, y_intercept = simple_degree(random_data_x[temp_num_1], random_data_y[temp_num_1], random_data_x[temp_num_2], random_data_y[temp_num_2])
-
-degree = linear_regression(temp_degree, y_intercept, random_data_x, random_data_y, alpha)
-print(degree)
-y_first = -limit_x*degree + y_intercept
-y_last = limit_x*degree + y_intercept
+print(f'h(x) = {theta_0} + {theta_1}x')
 
 plt.plot(random_data_x, random_data_y, 'k.')
-plt.plot([-limit_x, limit_x], [y_first, y_last], 'k')
+plt.plot([-limit_x, limit_x], [-limit_x*theta_1 + theta_0, limit_x*theta_1 + theta_0], 'r')
 
 plt.show()
