@@ -45,6 +45,7 @@ def calculate_gradient(theta_0, theta_1, random_data_x, random_data_y, num_data,
     min_theta_1 = 1
 
     while True:
+        print(f'h(x) = {theta_0} + {theta_1}x')
         cost, simple_cost_0, simple_cost_1 = calculate_cost(theta_0, theta_1, random_data_x, random_data_y, num_data)
 
         theta_0 = round(theta_0 - (alpha*(simple_cost_0)), 4)
@@ -72,10 +73,7 @@ theta_0 = 0
 theta_1 = 1
 
 random_data_x, random_data_y, random_data_xy = make_random_points(num_data, limit_x)
-cost = calculate_cost(theta_0, theta_1, random_data_x, random_data_y, num_data)
 theta_0, theta_1 = calculate_gradient(theta_0, theta_1, random_data_x, random_data_y, num_data, alpha)
-
-print(f'h(x) = {theta_0} + {theta_1}x')
 
 plt.plot(random_data_x, random_data_y, 'k.')
 plt.plot([-limit_x, limit_x], [-limit_x*theta_1 + theta_0, limit_x*theta_1 + theta_0], 'r')
