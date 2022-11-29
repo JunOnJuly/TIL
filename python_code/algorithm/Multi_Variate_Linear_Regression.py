@@ -50,9 +50,9 @@ def calculate_gradient(theta_list, random_data_x, random_data_y, num_data, alpha
 
         cost, theta_list_cal = calculate_cost(theta_list, random_data_x, random_data_y, num_data)
         print(cost)
-        alpha = 10**-9
+        alpha = 10**-18
         for i in range(n):
-            theta_list_cal[i] = round(theta_list[i] - (alpha*theta_list_cal[i]), 4)
+            theta_list_cal[i] = theta_list[i] - (alpha*theta_list_cal[i])
 
         if min_cost > cost:
             min_cost = cost
@@ -69,7 +69,7 @@ def calculate_gradient(theta_list, random_data_x, random_data_y, num_data, alpha
 
 num_data = 6
 limit_x = 5
-limit_y = 1000
+limit_y = 100000000
 alpha = 1
 
 theta_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -77,7 +77,7 @@ theta_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 random_data_x, random_data_y, random_data_xy = make_random_points(num_data, limit_x, limit_y)
 theta_list = calculate_gradient(theta_list, random_data_x, random_data_y, num_data, alpha)
 
-plot_input_x = [i*0.01 for i in range(-limit_x*100, limit_x+1*100)]
+plot_input_x = [i*0.01 for i in range(-limit_x*100, limit_x*101)]
 plot_input_y = []
 
 for i in range(len(plot_input_x)):
@@ -90,6 +90,6 @@ plt.plot(random_data_x, random_data_y, 'k.')
 plt.plot(plot_input_x, plot_input_y, 'r')
 
 print(plot_input_x, plot_input_y)
-plt.ylim([-limit_y, limit_y])
+# plt.ylim([-limit_y, limit_y])
 
 plt.show()
