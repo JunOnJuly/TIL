@@ -1,0 +1,41 @@
+#background_div{
+  background-color: #7683AA;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#topbar{
+  background-color: #2F4073;
+
+  width: 100vw;
+  height: 10vh;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.nav_item{
+  display: flex;
+
+  height: 10vh;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  
+  border: solid #152554 1px;
+}
+
+.nav_text{
+  color: #A9B2CD;
+}
